@@ -1,0 +1,38 @@
+CREATE TABLE Users(
+	id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE Student_Performance(
+	student_id int,
+    table_id int,
+	score int,
+	FOREIGN KEY(student_id) 
+    REFERENCES Users(id)
+);
+
+CREATE TABLE Student_Traffic(
+	student_id int,
+    table_id int,
+	table_views int,
+	FOREIGN KEY(student_id) 
+    REFERENCES Users(id)
+);
+
+CREATE TABLE Low_Performing_Students(
+	student_id int,
+    table_id int,
+	FOREIGN KEY(student_id) 
+    REFERENCES Users(id)
+);
+
+select * from Student_Performance
+
+INSERT INTO Student_Performance(student_id,table_id,score) VALUES('4','2','2000');
+drop table student_Traffic
+select * from Student_Traffic
+SELECT table_id,avg(score) as average_performance FROM Student_Performance WHERE student_id=4 group by table_id ORDER BY table_id ASC
+
+SELECT table_id,table_views FROM Student_Traffic WHERE student_id=4 ORDER BY table_id ASC
+SELECT table_id,count(table_id) as cnt FROM Student_Performance WHERE student_id=4 and table_id=8 group by table_id
+SELECT table_id,avg(score) as avg FROM Student_Performance WHERE student_id=4 and table_id=8 group by table_id

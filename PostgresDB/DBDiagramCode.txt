@@ -1,0 +1,24 @@
+// Creating tables
+Table Users {
+  id int [pk, increment] // auto-increment
+  name text
+}
+
+Table Student_Performance {
+  student_id int
+  table_id int
+  score int
+ }
+ Table Student_Traffic {
+  student_id int
+  table_id int
+  table_views int
+ }
+ Table Low_Performing_Students {
+  student_id int
+  table_id int
+ }
+
+Ref: Student_Performance.student_id > Users.id
+Ref: Student_Traffic.student_id > Users.id
+Ref: Low_Performing_Students.student_id > Users.id
